@@ -1,242 +1,82 @@
-const companyNames = [
-    "Acme Corp", "TechNova", "PixelPerfect", "Vanguard Solutions", "Streamline Media",
-    "Nebula Dynamics", "Quantum Shift", "Elevation Partners", "Atlas Industries", "Starlight Systems",
-    "Apex Fintech", "HealthSync", "EduSphere", "CyberShield", "GreenLeaf Co",
-    "Lumina Labs", "Zenith Apps", "Solstice Media", "Vertex Solutions", "Origin Systems",
-    "Pulse Digital", "Evolve Labs", "Nexus Soft", "Infinite Loop", "Blue Wave",
-    "Summit Tech", "Drift Mobile", "Forge Foundry", "Core Dynamics", "Beacon Systems"
-];
-
-const companyTypes = [
-    "Fintech Startup", "Healthcare Provider", "B2B SaaS Platform", "E-commerce Brand",
-    "EdTech Organization", "Non-profit Charity", "Logistics Company", "Real Estate Agency",
-    "Travel Aggregator", "Gaming Studio", "AI Research Lab", "Food Delivery Service",
-    "PropTech Startup", "Renewable Energy Co", "Mental Health App", "InsurTech Platform",
-    "GovTech Agency", "MarTech Solution", "Crypto Exchange", "Cybersecurity Firm",
-    "AgriTech Startup", "HR Tech Platform", "CleanTech Business", "LegalTech Firm"
-];
-
-const uiUxTasks = [
-    "new onboarding flow for new users",
-    "dashboard to visualize complex data",
-    "landing page to increase conversions",
-    "seamless checkout experience",
-    "user research phase and wireframing for their new product",
-    "design system to unify their brand across platforms",
-    "gamified loyalty program interface",
-    "mobile-first marketplace for creators",
-    "subscription management portal",
-    "interactive map for real-time logistics tracking",
-    "secure digital wallet interface",
-    "cross-platform social networking feature",
-    "patient portal for medical records",
-    "student learning management system",
-    "automated expense reporting tool",
-    "internal admin tool for supply chain",
-    "customer support chatbot interface",
-    "investor relations dashboard",
-    "public transport booking app",
-    "real estate virtual tour interface"
-];
-
-const businessConstraints = [
-    "the launch date is in 3 weeks and cannot be moved",
-    "the development team only has junior engineers",
-    "they must use legacy backend systems that are very slow",
-    "stakeholders are highly risk-averse and prefer conservative designs",
-    "the target audience is 65+ years old with low tech literacy",
-    "the application must be fully offline-capable",
-    "they want to integrate heavy 3D assets without hurting performance",
-    "no time for user testing before MVP launch",
-    "entire brand identity is completely locked",
-    "platform must support right-to-left (RTL) languages",
-    "app must meet strict GDPR compliance standards",
-    "primary user interaction happens in low-connectivity areas",
-    "key actions must be reachable within two taps",
-    "design must be optimized for low-end mobile devices",
-    "product will be white-labeled for fifty different partners",
-    "complete visual audit every two weeks",
-    "accessibility compliance (WCAG 2.1 AA) is a legal requirement",
-    "minimal data usage is critical"
-];
-
+const companyNames = ["Acme Corp", "TechNova", "PixelPerfect", "Vanguard Solutions", "Streamline Media", "Nebula Dynamics", "Quantum Shift", "Elevation Partners", "Atlas Industries", "Starlight Systems", "Apex Fintech", "HealthSync", "EduSphere", "CyberShield", "GreenLeaf Co", "Lumina Labs", "Zenith Apps", "Solstice Media", "Vertex Solutions", "Origin Systems", "Pulse Digital", "Evolve Labs", "Nexus Soft", "Infinite Loop", "Blue Wave", "Summit Tech", "Drift Mobile", "Forge Foundry", "Core Dynamics", "Beacon Systems"];
+const companyTypes = ["Fintech Startup", "Healthcare Provider", "B2B SaaS Platform", "E-commerce Brand", "EdTech Organization", "Non-profit Charity", "Logistics Company", "Real Estate Agency", "Travel Aggregator", "Gaming Studio", "AI Research Lab", "Food Delivery Service", "PropTech Startup", "Renewable Energy Co", "Mental Health App", "InsurTech Platform", "GovTech Agency", "MarTech Solution", "Crypto Exchange", "Cybersecurity Firm", "AgriTech Startup", "HR Tech Platform", "CleanTech Business", "LegalTech Firm"];
+const uiUxTasks = ["new onboarding flow", "data visualization dashboard", "conversion landing page", "seamless checkout", "user research & wireframing", "unified design system", "gamified loyalty program", "creator marketplace", "subscription portal", "real-time logistics map", "digital wallet interface", "social networking feature", "patient portal", "learning management system", "expense reporting tool", "supply chain admin tool", "chatbot interface", "investor dashboard", "transport booking app", "virtual tour interface"];
+const businessConstraints = ["launch in 3 weeks", "junior dev team only", "legacy backend systems", "risk-averse stakeholders", "target audience 65+", "fully offline-capable", "heavy 3D assets", "no time for user testing", "brand identity locked", "RTL language support", "strict GDPR compliance", "low-connectivity areas", "reachable in two taps", "low-end mobile devices", "white-labeled product", "bi-weekly visual audit", "WCAG 2.1 AA compliance", "minimal data usage"];
 const fontPairs = [
-    { primary: "IBM Plex Serif", secondary: "IBM Plex Sans" },
-    { primary: "Playfair Display", secondary: "Lato" },
-    { primary: "Poppins", secondary: "Open Sans" },
-    { primary: "Montserrat", secondary: "Lora" },
-    { primary: "DM Serif Display", secondary: "Inter" },
-    { primary: "Space Grotesk", secondary: "Sora" },
-    { primary: "Syne", secondary: "Inter" },
-    { primary: "Public Sans", secondary: "Lora" },
-    { primary: "Outfit", secondary: "Inter" }
+    { p: "IBM Plex Serif", s: "IBM Plex Sans" }, { p: "Playfair Display", s: "Lato" },
+    { p: "Poppins", s: "Open Sans" }, { p: "Montserrat", s: "Lora" },
+    { p: "DM Serif Display", s: "Inter" }, { p: "Space Grotesk", s: "Sora" },
+    { p: "Syne", s: "Inter" }, { p: "Public Sans", s: "Lora" }, { p: "Outfit", s: "Inter" }
 ];
-
 const colorPalettes = [
-    { name: "Ocean Breeze", primary: "#0ea5e9", secondary1: "#10b981", secondary2: "#0369a1" },
-    { name: "Royal Sunset", primary: "#6366f1", secondary1: "#f43f5e", secondary2: "#4338ca" },
-    { name: "Electric Jungle", primary: "#10b981", secondary1: "#fbbf24", secondary2: "#065f46" },
-    { name: "Night Lavender", primary: "#a855f7", secondary1: "#ec4899", secondary2: "#6b21a8" },
-    { name: "Cyber Ember", primary: "#f97316", secondary1: "#ef4444", secondary2: "#9a3412" },
-    { name: "Nordic Frost", primary: "#38bdf8", secondary1: "#94a3b8", secondary2: "#075985" },
-    { name: "Modern Noir", primary: "#e2e8f0", secondary1: "#64748b", secondary2: "#1e293b" }
+    { p: "#0ea5e9", s1: "#10b981", s2: "#0369a1" }, { p: "#6366f1", s1: "#f43f5e", s2: "#4338ca" },
+    { p: "#10b981", s1: "#fbbf24", s2: "#065f46" }, { p: "#a855f7", s1: "#ec4899", s2: "#6b21a8" },
+    { p: "#f97316", s1: "#ef4444", s2: "#9a3412" }, { p: "#38bdf8", s1: "#94a3b8", s2: "#075985" },
+    { p: "#e2e8f0", s1: "#64748b", s2: "#1e293b" }
+];
+const personas = [
+    { n: "The Pro", r: "Manager", b: "Values efficiency. No patience for slow apps.", g: "Sub-30s tasks", p: "Notifications" },
+    { n: "The Nomad", r: "Designer", b: "Uses coffee shop wifi. Needs perfect sync.", g: "Collaboration", p: "Offline mode" },
+    { n: "The Learner", r: "Retiree", b: "New to apps. Needs clear UI.", g: "Stay connected", p: "Small text" },
+    { n: "The Hacker", r: "Engineer", b: "Wants shortcuts and performance.", g: "Automation", p: "Dumbed-down UI" },
+    { n: "The Conscious", r: "Student", b: "Highly ethical. Values data privacy.", g: "Sustainability", p: "Dark patterns" }
 ];
 
-const personaTemplates = [
-    { name: "The Busy Professional", role: "Mid-level Manager", bio: "Values efficiency over everything. Has no patience for slow-loading apps.", goal: "Sub-30s tasks", pain: "Notification overload" },
-    { name: "The Digital Nomad", role: "Freelance Designer", bio: "Uses various devices in coffee shops. Needs sync to be perfect.", goal: "Easy collaboration", pain: "Poor offline support" },
-    { name: "The Cautious Learner", role: "Retiree", bio: "New to digital apps. Needs clear instructions and large UI elements.", goal: "Family connection", pain: "Small text/icons" },
-    { name: "The Power User", role: "Software Engineer", bio: "Wants keyboard shortcuts and raw performance.", goal: "Workflow automation", pain: "Simplified 'dumb' UI" },
-    { name: "The Conscious Consumer", role: "Student", bio: "Highly ethical. Looks for transparency in data usage.", goal: "Find sustainable brands", pain: "Dark patterns" }
-];
+const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+const shuffle = (arr, n) => [...arr].sort(() => 0.5 - Math.random()).slice(0, n);
 
-function getRandomItem(array) {
-    return array[Math.floor(Math.random() * array.length)];
-}
+const updateUI = () => {
+    const f = pick(fontPairs);
+    const c = pick(colorPalettes);
+    const p = shuffle(personas, 3);
+    
+    document.getElementById('font-container').innerHTML = `
+        <div class="font-card"><span class="font-label">Heading</span><span class="font-preview" style="font-family:'${f.p}',serif">${f.p}</span></div>
+        <div class="font-card"><span class="font-label">Body</span><span class="font-preview" style="font-family:'${f.s}',sans-serif">${f.s}</span></div>`;
+    
+    document.getElementById('color-container').innerHTML = [c.p, c.s1, c.s2].map(hex => `
+        <div class="color-swatch-container"><div class="color-swatch" style="background:${hex}"></div><span class="color-code">${hex}</span></div>`).join('');
+    
+    document.getElementById('persona-container').innerHTML = p.map((per, i) => `
+        <div class="persona-card ${i === 0 ? 'primary' : ''}">
+            <div class="persona-header"><div class="persona-avatar">${per.n[4]}</div>
+            <div class="personality"><h4>${per.n}</h4><p>${per.r}</p></div></div>
+            <p class="persona-bio">${per.b}</p>
+            <div class="persona-meta"><div class="meta-item"><h5>Goal</h5><p>${per.g}</p></div>
+            <div class="meta-item"><h5>Pain</h5><p>${per.p}</p></div></div></div>`).join('');
+};
 
-function getRandomItems(array, count) {
-    const shuffled = [...array].sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, count);
-}
-
-function generateBrief() {
-    return `
-        <span id="name-part" class="entity-tag interactive">${getRandomItem(companyNames)}</span>, 
-        A <span id="type-part" class="entity-tag interactive">${getRandomItem(companyTypes)}</span> needs a 
-        <span id="task-part" class="entity-tag interactive">${getRandomItem(uiUxTasks)}</span>. 
-        However, We need to keep in mind that, 
-        <span id="constraint-part" class="constraint-tag interactive">${getRandomItem(businessConstraints)}</span>.
-    `;
-}
-
-function updateBrandAssets() {
-    const fonts = getRandomItem(fontPairs);
-    const palette = getRandomItem(colorPalettes);
-
-    const fontContainer = document.getElementById('font-container');
-    const colorContainer = document.getElementById('color-container');
-
-    fontContainer.innerHTML = `
-        <div class="font-card">
-            <span class="font-label">Primary (Headings)</span>
-            <span class="font-preview" style="font-family: '${fonts.primary}', serif">${fonts.primary}</span>
-        </div>
-        <div class="font-card">
-            <span class="font-label">Secondary (Body)</span>
-            <span class="font-preview" style="font-family: '${fonts.secondary}', sans-serif">${fonts.secondary}</span>
-        </div>
-    `;
-
-    colorContainer.innerHTML = `
-        <div class="color-swatch-container">
-            <div class="color-swatch" style="background-color: ${palette.primary}"></div>
-            <span class="color-code">${palette.primary}</span>
-        </div>
-        <div class="color-swatch-container">
-            <div class="color-swatch" style="background-color: ${palette.secondary1}"></div>
-            <span class="color-code">${palette.secondary1}</span>
-        </div>
-        <div class="color-swatch-container">
-            <div class="color-swatch" style="background-color: ${palette.secondary2}"></div>
-            <span class="color-code">${palette.secondary2}</span>
-        </div>
-    `;
-}
-
-function updatePersonas() {
-    const personas = getRandomItems(personaTemplates, 3);
-    const container = document.getElementById('persona-container');
-    container.innerHTML = '';
-
-    personas.forEach((persona, index) => {
-        const card = document.createElement('div');
-        card.className = `persona-card ${index === 0 ? 'primary' : ''}`;
-        card.innerHTML = `
-            <div class="persona-header">
-                <div class="persona-avatar">${persona.name.charAt(0)}</div>
-                <div class="personality">
-                    <h4>${persona.name}</h4>
-                    <p>${persona.role}</p>
-                </div>
-            </div>
-            <p class="persona-bio">${persona.bio}</p>
-            <div class="persona-meta">
-                <div class="meta-item">
-                    <h5>Key Goal</h5>
-                    <p>${persona.goal}</p>
-                </div>
-                <div class="meta-item">
-                    <h5>Pain Point</h5>
-                    <p>${persona.pain}</p>
-                </div>
-            </div>
-        `;
-        container.appendChild(card);
-    });
-}
-
-function refreshPart(element, dataArray) {
-    element.style.opacity = 0;
-    element.style.transform = 'translateY(5px)';
-
-    setTimeout(() => {
-        element.textContent = getRandomItem(dataArray);
-        element.style.opacity = 1;
-        element.style.transform = 'translateY(0)';
-    }, 200);
-}
-
-function showToast(message) {
-    let toast = document.querySelector('.toast');
-    if (!toast) {
-        toast = document.createElement('div');
-        toast.className = 'toast';
-        document.body.appendChild(toast);
-    }
-    toast.textContent = message;
-    toast.classList.add('show');
-    setTimeout(() => {
-        toast.classList.remove('show');
-    }, 2000);
-}
+const refreshPart = (el, data) => {
+    el.style.opacity = 0;
+    setTimeout(() => { el.textContent = pick(data); el.style.opacity = 1; }, 200);
+};
 
 document.addEventListener('DOMContentLoaded', () => {
-    const generateBtn = document.getElementById('generate-btn');
-    const copyBtn = document.getElementById('copy-btn');
-    const briefDisplay = document.getElementById('brief-display');
-    const additionalData = document.getElementById('additional-data');
+    const genBtn = document.getElementById('generate-btn');
+    const display = document.getElementById('brief-display');
+    const extra = document.getElementById('additional-data');
 
-    generateBtn.addEventListener('click', () => {
-        briefDisplay.style.opacity = 0;
-        additionalData.classList.add('hidden');
-        additionalData.classList.remove('show');
-
+    genBtn.addEventListener('click', () => {
+        display.style.opacity = 0;
+        extra.classList.remove('show');
         setTimeout(() => {
-            briefDisplay.innerHTML = `<p class="fade-in">${generateBrief()}</p>`;
-            briefDisplay.style.opacity = 1;
-
-            updateBrandAssets();
-            updatePersonas();
-
-            additionalData.classList.remove('hidden');
-            setTimeout(() => {
-                additionalData.classList.add('show');
-            }, 50);
-
-            // Add listeners to new elements
-            document.getElementById('name-part').addEventListener('click', (e) => refreshPart(e.target, companyNames));
-            document.getElementById('type-part').addEventListener('click', (e) => refreshPart(e.target, companyTypes));
-            document.getElementById('task-part').addEventListener('click', (e) => refreshPart(e.target, uiUxTasks));
-            document.getElementById('constraint-part').addEventListener('click', (e) => refreshPart(e.target, businessConstraints));
+            display.innerHTML = `<p class="fade-in"><span id="n-p" class="entity-tag interactive">${pick(companyNames)}</span>, A <span id="t-p" class="entity-tag interactive">${pick(companyTypes)}</span> needs a <span id="ta-p" class="entity-tag interactive">${pick(uiUxTasks)}</span>. However, <span id="c-p" class="entity-tag interactive">${pick(businessConstraints)}</span>.</p>`;
+            display.style.opacity = 1;
+            updateUI();
+            extra.classList.remove('hidden');
+            setTimeout(() => extra.classList.add('show'), 50);
+            document.getElementById('n-p').onclick = (e) => refreshPart(e.target, companyNames);
+            document.getElementById('t-p').onclick = (e) => refreshPart(e.target, companyTypes);
+            document.getElementById('ta-p').onclick = (e) => refreshPart(e.target, uiUxTasks);
+            document.getElementById('c-p').onclick = (e) => refreshPart(e.target, businessConstraints);
         }, 150);
     });
 
-    copyBtn.addEventListener('click', () => {
-        const text = briefDisplay.innerText;
-        if (text.includes("Click the button")) return;
-        
-        navigator.clipboard.writeText(text).then(() => {
-            showToast('Brief copied to clipboard!');
+    document.getElementById('copy-btn').onclick = () => {
+        const text = display.innerText;
+        if (!text.includes("Click")) navigator.clipboard.writeText(text).then(() => {
+            let t = document.createElement('div'); t.className = 'toast show'; t.innerText = 'Copied!';
+            document.body.appendChild(t); setTimeout(() => t.remove(), 2000);
         });
-    });
+    };
 });
