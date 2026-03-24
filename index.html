@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="A random design brief generator with realistic business context and constraints for UI/UX designers.">
+    <title>Design Brief Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&family=Poppins:wght@400;600&family=Montserrat:wght@400;700&family=Syne:wght@700&family=Space+Grotesk:wght@500;700&family=Plus+Jakarta+Sans:wght@400;700&family=Sora:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="background">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <main class="container">
+        <header>
+            <h1>Brief<span class="highlight">Gen</span></h1>
+            <p>Generate realistic, business-contextualized design briefs.</p>
+        </header>
+
+        <section class="card glass">
+            <div class="badge">Problem Statement</div>
+            <div id="brief-display" class="brief-content">
+                <p class="placeholder-text">Click the button below to generate a new design brief.</p>
+            </div>
+
+            <div class="actions">
+                <button id="generate-btn" class="primary-btn">
+                    <span class="btn-text">Generate New Brief</span>
+                    <svg class="sparkle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+                    </svg>
+                </button>
+                <button id="copy-btn" class="secondary-btn" title="Copy Brief">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- New sections for Brand and Personas -->
+        <div id="additional-data" class="hidden">
+            <section class="brand-assets">
+                <div class="asset-group">
+                    <h3>Brand Typography</h3>
+                    <div id="font-container" class="font-display">
+                        <!-- Fonts will be injected here -->
+                    </div>
+                </div>
+                <div class="asset-group">
+                    <h3>Brand Palette</h3>
+                    <div id="color-container" class="color-display">
+                        <!-- Colors will be injected here -->
+                    </div>
+                </div>
+            </section>
+
+            <section class="personas-section">
+                <h3>Target Personas</h3>
+                <div id="persona-container" class="persona-grid">
+                    <!-- Persona cards will be injected here -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
