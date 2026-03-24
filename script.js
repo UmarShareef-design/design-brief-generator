@@ -61,13 +61,15 @@ const businessConstraints = [
 ];
 
 const fontPairs = [
-    { primary: "Outfit", secondary: "Inter" },
-    { primary: "Playfair Display", secondary: "Plus Jakarta Sans" },
-    { primary: "Syne", secondary: "Inter" },
+    { primary: "IBM Plex Serif", secondary: "IBM Plex Sans" },
+    { primary: "Playfair Display", secondary: "Lato" },
+    { primary: "Poppins", secondary: "Open Sans" },
+    { primary: "Montserrat", secondary: "Lora" },
+    { primary: "DM Serif Display", secondary: "Inter" },
     { primary: "Space Grotesk", secondary: "Sora" },
-    { primary: "Montserrat", secondary: "Poppins" },
-    { primary: "Plus Jakarta Sans", secondary: "Inter" },
-    { primary: "Sora", secondary: "Outfit" }
+    { primary: "Syne", secondary: "Inter" },
+    { primary: "Public Sans", secondary: "Lora" },
+    { primary: "Outfit", secondary: "Inter" }
 ];
 
 const colorPalettes = [
@@ -81,11 +83,11 @@ const colorPalettes = [
 ];
 
 const personaTemplates = [
-    { name: "The Busy Professional", role: "Mid-level Manager", bio: "Always on the go, values efficiency over everything. Has no patience for slow-loading apps.", goal: "Complete tasks in under 30 seconds", pain: "Notification overload" },
-    { name: "The Digital Nomad", role: "Freelance Designer", bio: "Uses various devices in coffee shops. Needs sync to be perfect and loves dark mode.", goal: "Collaboration across timezones", pain: "Poor offline support" },
-    { name: "The Cautious Learner", role: "Retiree", bio: "New to digital apps. Needs clear instructions and large, accessible UI elements.", goal: "Stay connected with family", pain: "Small text and confusing icons" },
-    { name: "The Power User", role: "Software Engineer", bio: "Wants keyboard shortcuts, deep customization, and raw performance.", goal: "Automate repetitive workflows", pain: "Simplified 'dumbed down' interfaces" },
-    { name: "The Conscious Consumer", role: "Student", bio: "Highly ethical. Looks for transparency in data usage and eco-friendly practices.", goal: "Discover sustainable brands", pain: "Hidden fees or dark patterns" }
+    { name: "The Busy Professional", role: "Mid-level Manager", bio: "Values efficiency over everything. Has no patience for slow-loading apps.", goal: "Sub-30s tasks", pain: "Notification overload" },
+    { name: "The Digital Nomad", role: "Freelance Designer", bio: "Uses various devices in coffee shops. Needs sync to be perfect.", goal: "Easy collaboration", pain: "Poor offline support" },
+    { name: "The Cautious Learner", role: "Retiree", bio: "New to digital apps. Needs clear instructions and large UI elements.", goal: "Family connection", pain: "Small text/icons" },
+    { name: "The Power User", role: "Software Engineer", bio: "Wants keyboard shortcuts and raw performance.", goal: "Workflow automation", pain: "Simplified 'dumb' UI" },
+    { name: "The Conscious Consumer", role: "Student", bio: "Highly ethical. Looks for transparency in data usage.", goal: "Find sustainable brands", pain: "Dark patterns" }
 ];
 
 function getRandomItem(array) {
@@ -117,7 +119,7 @@ function updateBrandAssets() {
     fontContainer.innerHTML = `
         <div class="font-card">
             <span class="font-label">Primary (Headings)</span>
-            <span class="font-preview" style="font-family: '${fonts.primary}', sans-serif">${fonts.primary}</span>
+            <span class="font-preview" style="font-family: '${fonts.primary}', serif">${fonts.primary}</span>
         </div>
         <div class="font-card">
             <span class="font-label">Secondary (Body)</span>
@@ -150,22 +152,23 @@ function updatePersonas() {
         const card = document.createElement('div');
         card.className = `persona-card ${index === 0 ? 'primary' : ''}`;
         card.innerHTML = `
-            ${index === 0 ? '<span class="persona-badge">Primary Persona</span>' : ''}
             <div class="persona-header">
                 <div class="persona-avatar">${persona.name.charAt(0)}</div>
-                <div class="persona-info">
+                <div class="personality">
                     <h4>${persona.name}</h4>
                     <p>${persona.role}</p>
                 </div>
             </div>
             <p class="persona-bio">${persona.bio}</p>
-            <div class="persona-detail">
-                <h5>Key Goal</h5>
-                <p>${persona.goal}</p>
-            </div>
-            <div class="persona-detail">
-                <h5>Pain Point</h5>
-                <p>${persona.pain}</p>
+            <div class="persona-meta">
+                <div class="meta-item">
+                    <h5>Key Goal</h5>
+                    <p>${persona.goal}</p>
+                </div>
+                <div class="meta-item">
+                    <h5>Pain Point</h5>
+                    <p>${persona.pain}</p>
+                </div>
             </div>
         `;
         container.appendChild(card);
