@@ -60,7 +60,11 @@ document.addEventListener('DOMContentLoaded', () => {
         display.style.opacity = 0;
         extra.classList.remove('show');
         setTimeout(() => {
-            display.innerHTML = `<p class="fade-in"><span id="n-p" class="entity-tag interactive">${pick(companyNames)}</span>, A <span id="t-p" class="entity-tag interactive">${pick(companyTypes)}</span> needs a <span id="ta-p" class="entity-tag interactive">${pick(uiUxTasks)}</span>. However, <span id="c-p" class="entity-tag interactive">${pick(businessConstraints)}</span>.</p>`;
+            display.innerHTML = `<p class="fade-in">
+                <span id="n-p" class="entity-tag interactive" title="Click to shuffle">${pick(companyNames)}</span>, A 
+                <span id="t-p" class="entity-tag interactive" title="Click to shuffle">${pick(companyTypes)}</span> needs a 
+                <span id="ta-p" class="entity-tag interactive" title="Click to shuffle">${pick(uiUxTasks)}</span>. However, 
+                <span id="c-p" class="entity-tag interactive" title="Click to shuffle">${pick(businessConstraints)}</span>.</p>`;
             display.style.opacity = 1;
             updateUI();
             extra.classList.remove('hidden');
@@ -75,8 +79,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('copy-btn').onclick = () => {
         const text = display.innerText;
         if (!text.includes("Click")) navigator.clipboard.writeText(text).then(() => {
-            let t = document.createElement('div'); t.className = 'toast show'; t.innerText = 'Copied!';
-            document.body.appendChild(t); setTimeout(() => t.remove(), 2000);
+            let t = document.createElement('div'); t.className = 'toast'; t.innerText = 'Copied to clipboard!';
+            document.body.appendChild(t); 
+            setTimeout(() => t.classList.add('show'), 10);
+            setTimeout(() => { 
+                t.classList.remove('show');
+                setTimeout(() => t.remove(), 400);
+            }, 2000);
         });
     };
 });
